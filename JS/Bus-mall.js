@@ -34,76 +34,76 @@ function instantItems() {
     var image20 = new Items(' wine-glass', 'images/wine-glass.jpg', 0, 0, 'wine-glass');
 }
 
-// var tracker = {
-//         // pic1: document.getElementById('pic1'),
-//         // pic2: document.getElementById('pic2'),
-//         // pic3: document.getElementById('pic3'),
-//         displaySection: document.getElementById('display'),
-//         votes: 0,
+var tracker = {
+    pic1: document.getElementById('pic1'),
+    pic2: document.getElementById('pic2'),
+    pic3: document.getElementById('pic3'),
+    displaySection: document.getElementById('display'),
+    votes: 0,
 
 
-//         randomIndex: function (arr) {
-//             return Math.floor(Math.random() * arr.length);
-//         },
+    randomIndex: function (arr) {
+        return Math.floor(Math.random() * arr.length);
+    },
 
-//         getIndices: function (arr) {
-//             var selectedIndices = [];
+    getIndices: function (arr) {
+        var selectedIndices = [];
 
-//             do {
-//                 var indexNum = this.randomIndex(arr);
+        do {
+            var indexNum = this.randomIndex(arr);
 
-//                 if (!selectedIndices.includes(indexNum)) {
-//                     selectedIndices.push(indexNum);
-//                 }
-//             } while (selectedIndices.length < 3);
+            if (!selectedIndices.includes(indexNum)) {
+                selectedIndices.push(indexNum);
+            }
+        } while (selectedIndices.length < 3);
 
-//             return selectedIndices;
-//         },
-    // function displayOptions() {
+        return selectedIndices;
+    },
+    function displayOptions() {
 
-    //         var itemPics = this.getIndices(images);
+        var itemPics = this.getIndices(images);
 
-            // var index1 = itemPics[0];
-            // var index2 = itemPics[1];
-            // var index3 = itemPics[2];
+        var index1 = itemPics[0];
+        var index2 = itemPics[1];
+        var index3 = itemPics[2];
 
-            // var restaurant1 = images[index1];
-            // var restaurant2 = images[index2];
-            // var restaurant3 = images[index3];
+        var restaurant1 = images[index1];
+        var restaurant2 = images[index2];
+        var restaurant3 = images[index3];
 
-            instantItems();
-            document.getElementById('pic1').setAttribute('src', images[0].url);
-            document.getElementById('pic2').setAttribute('src', images[1].url);
-            document.getElementById('pic3').setAttribute('src', images[2].url);
-        //}
+        instantItems();
+        document.getElementById('pic1').setAttribute('src', images[0].url);
+        document.getElementById('pic2').setAttribute('src', images[1].url);
+        document.getElementById('pic3').setAttribute('src', images[2].url);
+    }
 
 
-        //     tallyVote: function (target) {
-        //         this.votes += 1;
+    tallyVote: function (target) {
+        this.votes += 1;
 
-        //         var selectRest = images[target.getAttribute('data-index')];
-        //         selectRest.votes++;
+        var selectRest = images[target.getAttribute('data-index')];
+        selectRest.votes++;
 
-        //         if (this.votes > 4) {
-        //             this.showResults();
-        //         }
-        //     },
-        //     showResults: function () {
+        if (this.votes > 4) {
+            this.showResults();
+        }
+    },
+    showResults: function () {
 
-        //         this.displaySection.removeEventListener('click', voteHandler);
-        //         console.table(images);
-        //     }
-        // };
-        // var display = document.getElementById('display');
-        // display.addEventListener('click', voteHandler, true);
+        this.displaySection.removeEventListener('click', voteHandler);
+        console.table(images);
+    }
+};
+var display = document.getElementById('display');
+display.addEventListener('click', voteHandler, true);
 
-        // function voteHandler(e) {
+function voteHandler(e) {
 
-        //     tracker.tallyVote(e.target);
-        //     tracker.displayOptions();
-        // console.log(this.id + ' is listening; ' + e.target.id + ' was clicked');
-        // event.preventDefault();
-        //  event.target is what was clicked;
-        // }
+    tracker.tallyVote(e.target);
+    tracker.displayOptions();
+    console.log(this.id + ' is listening; ' + e.target.id + ' was clicked');
+    event.preventDefault();
+    event.target is what was clicked;
+}
 
-        // tracker.displayOptions();
+tracker.displayOptions();
