@@ -5,6 +5,6 @@ header{
 }
 
 #chart{
-    max-width: 250px;
-    max-height: 250px;
+    max-width: auto;
+    max-height: auto;
 }
