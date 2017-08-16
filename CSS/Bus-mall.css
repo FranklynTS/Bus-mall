@@ -5,6 +5,10 @@ header{
 }
 
 #chart{
-    max-width: auto;
-    max-height: auto;
+    max-width: 900px;
+    max-height: 900px;
+    margin: 0 auto;
+}
+#display{
+    margin: 0 auto;
 }

@@ -1,10 +1,11 @@
 var images = []
+var click = 0;
 
 function Items(name, url, id) {
     this.name = name;
     this.url = url;
     this.class =
-    // this.displayCount = 0;
+
     this.voteCount = 0;
     this.id = id;
 
@@ -71,14 +72,17 @@ var display = document.getElementById('display');
 display.addEventListener('click', voteHandler, false);
 
 function voteHandler(event) {
+    click ++
     console.log(event.target);
 
     var clickedEle = event.target;
     addVotes(clickedEle);
 
     displayImage();
-//if ( voteCount === 25){
 
+if ( click > 10 ) {
+    chart();
+}
 
 
 }
@@ -97,21 +101,37 @@ function addVotes(target) {
 
 displayImage();
 
+function chart(){
+    var chartVotes = [];
+    for ( var i = 0; i < images.length; i ++){
+        chartVotes.push(images[i].voteCount )
+    }
+
 var chartCanvas = document.getElementById('chart');
     var totalChart = new Chart (chartCanvas, {
         type: 'bar',
         data: {
             labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu','dog-duck' ,
-            'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass' ],
-            dataset: [
+            'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+            datasets: [
                 {
                     label: 'votes',
-                    data: ['click']
+                    data: chartVotes,
                 }
             ]
+        },
+        options: {
+            scales:{
+                yAxis: [{
+                    ticks: {
+                        beginAtZero: true
+
+                    }
+                }]
+            }
         }
+
     })
+};
 
-
-
-    //
+   
