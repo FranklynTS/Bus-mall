@@ -1,10 +1,10 @@
-var images = [] 
+var images = []
 
-function Items(name, url, id) {  
+function Items(name, url, id) {
     this.name = name;
     this.url = url;
-    this.class = 
-    this.displayCount = 0;
+    this.class =
+    // this.displayCount = 0;
     this.voteCount = 0;
     this.id = id;
 
@@ -72,26 +72,39 @@ display.addEventListener('click', voteHandler, false);
 
 function voteHandler(event) {
     console.log(event.target);
-    
+
     var clickedEle = event.target;
     addVotes(clickedEle);
-    
-    
-    console.log('clicked ele id', clickedEle.id);
-    
+
     displayImage();
-    
+if ( voteCount === 25){
+
+
+
 }
-function addVotes (target){
-    for ( i = 0; i < images.length; i++){
-        if ( target.src.match(images[i].url) ){
+
+}
+function addVotes(target) {
+    for (i = 0; i < images.length; i++) {
+        if (target.src.match(images[i].url)) {
             images[i].voteCount++
-            
+
             console.log(images[i]);
-            console.table( images);
+            console.table(images);
         }
     }
 }
-
-
 displayImage();
+var chartCanvas = document.getElementById('chart');
+    var totalChart = new Chart (chartCanvas, {
+        type: 'bar',
+        data: {
+            labels:['Jan', ' Feb', 'March'],
+            dataset: [
+                {
+                    label: 'votes',
+                    data: [4, 5, 6]
+                }
+            ]
+        }
+    })
