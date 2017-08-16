@@ -1,12 +1,12 @@
-var images = []  //allItmes
+var images = []
 
-function Items(name, url, id) {  //item
+function Items(name, url, id) {
     this.name = name;
     this.url = url;
-    this.displayCount = 0;
+    this.class =
+    // this.displayCount = 0;
     this.voteCount = 0;
     this.id = id;
-    this.votes;
 
     images.push(this);
 }
@@ -33,21 +33,22 @@ var image18 = new Items(' usb', 'images/usb.gif', 'usb');
 var image19 = new Items(' water-can', 'images/water-can.jpg', 'water-can');
 var image20 = new Items(' wine-glass', 'images/wine-glass.jpg', 'wine-glass');
 
+
 var randomImage = function () {
     var numberItem = Math.floor(Math.random() * (images.length));
-    return images[numberItem].filePath;
+    return images[numberItem].url;
 
 }
 var createSet = function () {
-    var images = [];
+    var imageSet = [];
     do {
         var imgPath = randomImage();
-        if (!images.includes(imgPath)) {
+        if (!imageSet.includes(imgPath)) {
 
-            images.push(randomImage());
+            imageSet.push(imgPath);
         }
-    } while (images.length < 3);
-    return images;
+    } while (imageSet.length < 3);
+    return imageSet;
 }
 
 
@@ -58,31 +59,52 @@ var displayImage = function () {
     var elImage1 = document.getElementById('pic1');
     elImage1.setAttribute('src', imgPaths[0]);
 
-    var elImage1 = document.getElementById('pic2');
-    elImage1.setAttribute('src', imgPaths[1]);
+    var elImage2 = document.getElementById('pic2');
+    elImage2.setAttribute('src', imgPaths[1]);
 
-    var elImage1 = document.getElementById('pic3');
-    elImage1.setAttribute('src', imgPaths[2]);
+    var elImage3 = document.getElementById('pic3');
+    elImage3.setAttribute('src', imgPaths[2]);
 }
 
 
-    //     var elImage2 = document.getElementById('pic2');
-    //     if ( randomImage() === 'first'){
-    //         randomImage()
-    //     }
-    //     else{
-    //         elImage2.setAttribute('src', randomImage() )
-    //     }
-    // }
+var display = document.getElementById('display');
+display.addEventListener('click', voteHandler, false);
 
-var survey = document.getElementById ('survey' );
-survey.addEventListener( 'click', voteHandler );
+function voteHandler(event) {
+    console.log(event.target);
 
-function voteHandler (event) {
-    console.log (event.target);
     var clickedEle = event.target;
-    console.log ('clicked ele id', clickedEle.id);
-}
-
+    addVotes(clickedEle);
 
     displayImage();
+if ( voteCount === 25){
+
+
+
+}
+
+}
+function addVotes(target) {
+    for (i = 0; i < images.length; i++) {
+        if (target.src.match(images[i].url)) {
+            images[i].voteCount++
+
+            console.log(images[i]);
+            console.table(images);
+        }
+    }
+}
+displayImage();
+var chartCanvas = document.getElementById('chart');
+    var totalChart = new Chart (chartCanvas, {
+        type: 'bar',
+        data: {
+            labels:['Jan', ' Feb', 'March'],
+            dataset: [
+                {
+                    label: 'votes',
+                    data: [4, 5, 6]
+                }
+            ]
+        }
+    })
