@@ -62,7 +62,7 @@ var createSet = function () {
 
             imageSet.push(imgPath);
         }
-    } while (imageSet.length < 3);
+    } while (imageSet.length < 25);
     return imageSet;
 }
 
