@@ -116,10 +116,12 @@ var chartCanvas = document.getElementById('chart');
         data: {
             labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu','dog-duck' ,
             'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+            
             datasets: [
                 {
                     label: 'votes',
                     data: chartVotes,
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
                 }
             ]
         },
