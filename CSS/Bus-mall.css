@@ -1,9 +1,9 @@
 html{
     background-color: gray;
+    text-align: center;
 }
 
 header{
-    text-align: center;
     font-size: 50px;
     color: #2B2B7F;
 }
@@ -19,4 +19,7 @@ header{
 #display{
     display: inline-block;
     /* display: inline-flex; */
+}
+#graph{
+    margin: 0 auto;
 }
