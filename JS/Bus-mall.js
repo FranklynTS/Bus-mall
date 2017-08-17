@@ -62,7 +62,7 @@ var createSet = function () {
 
             imageSet.push(imgPath);
         }
-    } while (imageSet.length < 25);
+    } while (imageSet.length < 3);
     return imageSet;
 }
 
@@ -94,7 +94,7 @@ function voteHandler(event) {
 
     displayImage();
 
-    if (click > 3) {
+    if (click > 24) {
         chart();
     }
     saveToLS();
