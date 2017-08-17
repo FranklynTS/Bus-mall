@@ -1,17 +1,31 @@
-var images = []
+function getLs (images){
+    return JSON.parse(localStorage.getItem(images))
+}
+
+var images = [];
+
+
+if (!localStorage.images) {
+    instantProducts();
+} else {
+    var images = getLs('images');
+}
+
 var click = 0;
+
 
 function Items(name, url, id) {
     this.name = name;
     this.url = url;
     this.class =
-
+    
     this.voteCount = 0;
     this.id = id;
-
+    
     images.push(this);
 }
 
+function instantProducts() {
 
 var image1 = new Items('bag', 'images/bag.jpg', 'bag');
 var image2 = new Items('banana', 'images/banana.jpg', 'banana');
@@ -34,18 +48,18 @@ var image18 = new Items('usb', 'images/usb.gif', 'usb');
 var image19 = new Items('water-can', 'images/water-can.jpg', 'water-can');
 var image20 = new Items('wine-glass', 'images/wine-glass.jpg', 'wine-glass');
 
-
+}
 var randomImage = function () {
     var numberItem = Math.floor(Math.random() * (images.length));
     return images[numberItem].url;
-
+    
 }
 var createSet = function () {
     var imageSet = [];
     do {
         var imgPath = randomImage();
         if (!imageSet.includes(imgPath)) {
-
+            
             imageSet.push(imgPath);
         }
     } while (imageSet.length < 3);
@@ -55,14 +69,14 @@ var createSet = function () {
 
 var displayImage = function () {
     var imgPaths = createSet();
-
-
+    
+    
     var elImage1 = document.getElementById('pic1');
     elImage1.setAttribute('src', imgPaths[0]);
-
+    
     var elImage2 = document.getElementById('pic2');
     elImage2.setAttribute('src', imgPaths[1]);
-
+    
     var elImage3 = document.getElementById('pic3');
     elImage3.setAttribute('src', imgPaths[2]);
 }
@@ -73,7 +87,7 @@ display.addEventListener('click', voteHandler, false);
 
 function voteHandler(event) {
     click ++
-    console.log(event.target);
+    //console.log(event.target);
     
     var clickedEle = event.target;
     addVotes(clickedEle);
@@ -86,31 +100,32 @@ function voteHandler(event) {
     saveToLS();
     
 }
-        function saveToLS () {
-            var str = JSON.stringify( images );
-            localStorage.setItem( 'images', JSON.stringify (str) );
-        }
+function saveToLS () {
+    var str = JSON.stringify( images );
+    localStorage.setItem( 'images', str );
+}
 
 function addVotes(target) {
     for (i = 0; i < images.length; i++) {
         if (target.src.match(images[i].url)) {
             images[i].voteCount++
-
-            console.log(images[i]);
-            console.table(images);
+            
+            //console.log(images[i]);
+            //console.table(images);
         }
     }
 }
 
 displayImage();
 
+
 function chart(){
     var chartVotes = [];
     for ( var i = 0; i < images.length; i ++){
         chartVotes.push(images[i].voteCount )
     }
-
-var chartCanvas = document.getElementById('chart');
+    
+    var chartCanvas = document.getElementById('chart');
     var totalChart = new Chart (chartCanvas, {
         type: 'bar',
         data: {
@@ -121,7 +136,9 @@ var chartCanvas = document.getElementById('chart');
                 {
                     label: 'votes',
                     data: chartVotes,
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#650EB2", "#FFA71D","#9D2DFF",
+                    "#10CC54","#38B265", "#0AB285", "#E418FF", "#28FFC5", "#CC9A0C", "#B29235","#B27449", 
+                    "#7BFF72", "#FFB581", "#6353CC", "#7B73B2"],
                 }
             ]
         },
@@ -130,12 +147,12 @@ var chartCanvas = document.getElementById('chart');
                 yAxis: [{
                     ticks: {
                         beginAtZero: true
-
+                        
                     }
                 }]
             }
         }
-
+        
     })
 };
 
