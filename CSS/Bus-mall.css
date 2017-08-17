@@ -1,14 +1,22 @@
+html{
+    background-color: gray;
+}
+
 header{
     text-align: center;
     font-size: 50px;
-    color: blue;
+    color: #2B2B7F;
 }
+
 
 #chart{
     max-width: 900px;
     max-height: 900px;
     margin: 0 auto;
+    background-color:white;
+    
 }
 #display{
-    margin: 0 auto;
+    display: inline-block;
+    /* display: inline-flex; */
 }

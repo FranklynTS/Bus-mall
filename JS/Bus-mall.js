@@ -74,20 +74,23 @@ display.addEventListener('click', voteHandler, false);
 function voteHandler(event) {
     click ++
     console.log(event.target);
-
+    
     var clickedEle = event.target;
     addVotes(clickedEle);
-
+    
     displayImage();
-
-if ( click > 10 ) {
-    chart();
+    
+    if ( click > 10 ) {
+        chart();
+    }
+    saveToLS();
+    
 }
+        function saveToLS () {
+            var str = JSON.stringify( images );
+            localStorage.setItem( 'images', JSON.stringify (str) );
+        }
 
-
-}
-
-//}
 function addVotes(target) {
     for (i = 0; i < images.length; i++) {
         if (target.src.match(images[i].url)) {
@@ -134,4 +137,4 @@ var chartCanvas = document.getElementById('chart');
     })
 };
 
-   
+
