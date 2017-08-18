@@ -87,14 +87,14 @@ display.addEventListener('click', voteHandler, false);
 
 function voteHandler(event) {
     click++
-    //console.log(event.target);
+
 
     var clickedEle = event.target;
     addVotes(clickedEle);
 
     displayImage();
 
-    if (click > 3) {
+    if (click > 24) {
         chart();
     }
     saveToLS();
@@ -110,8 +110,6 @@ function addVotes(target) {
         if (target.src.match(images[i].url)) {
             images[i].voteCount++
 
-            //console.log(images[i]);
-            //console.table(images);
         }
     }
 }
@@ -136,9 +134,9 @@ function chart() {
                 {
                     label: 'votes',
                     data: chartVotes,
-                    backgroundColor: [dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),
-                        dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),
-                        dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors(),dynamicColors()],
+                    backgroundColor: [dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(),
+                    dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(),
+                    dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors(), dynamicColors()],
                 }
             ]
         },
@@ -162,4 +160,4 @@ var dynamicColors = function () {
     var b = Math.floor(Math.random() * 255);
     return "rgb(" + r + "," + g + "," + b + ")";
 }
-console.log(dynamicColors());
+
