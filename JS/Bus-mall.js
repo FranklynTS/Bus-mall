@@ -95,6 +95,7 @@ function voteHandler(event) {
     displayImage();
 
     if (click > 24) {
+        alert(" Thank you for your votes today!");
         chart();
     }
     saveToLS();
